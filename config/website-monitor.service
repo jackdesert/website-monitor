@@ -1,0 +1,19 @@
+[Unit]
+Description='Website Monitor'
+Wants=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/website-monitor/lib
+
+ExecStart=/home/ubuntu/.pyenv/shims/python website_monitor.py
+
+TimeoutSec=30
+RestartSec=15s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

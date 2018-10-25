@@ -1,0 +1,16 @@
+# Slack webhook url
+webhook_url: https://hooks.slack.com/services/some_long_key
+
+# Enter as many sites as you want
+#
+# The format is
+# sites:
+#   - <site_uri>    <expected_text>
+#   - <site_uri>    <expected_text>
+#
+# Note <expected_text> is optional
+# Note <expected_text> is case INsensitive and may contain spaces
+
+sites:
+  - http://example.com                    example domain
+  - https://www.mozilla.org/en-US/        firefox
