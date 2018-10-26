@@ -23,7 +23,7 @@ class Website:
 
     TIMESTAMP_FORMAT = '%Y-%m-%d %H:%M:%S'
     OBSERVATIONS = 'observations'
-    FORWARD_SLASH_REGEX = re.compile('\/')
+    FORWARD_SLASH_REGEX = re.compile(r'/')
     DOWN = 'down'
     UP = 'up'
 
@@ -36,6 +36,10 @@ class Website:
         self.uri = uri
         self.expected_text = expected_text
         self.fetcher = Fetcher()
+
+    @property
+    def uri_friendly(self):
+        return self.uri.split('//', 1)[1]
 
     @property
     def observation_file(self):
@@ -97,6 +101,27 @@ class Website:
 
             self.message += f' Last {self.DOWN} duration: {duration.seconds} seconds.'
 
+
+    # TODO Get these to work correctly for .co.uk domains
+    @property
+    def _subdomain(self):
+        items = self.uri_friendly.rsplit('.', 2)
+        if len(items) == 3:
+            return items[0]
+        else:
+            return ''
+
+    @property
+    def _domain(self):
+        return self.uri_friendly.rsplit('.', 2)[-2]
+
+    @property
+    def _sortable(self):
+        return f'{self._domain} {self._subdomain}'
+
+    def __lt__(self, other):
+
+        return self._sortable < other._sortable
 
 
 

@@ -1,0 +1,22 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+    <h1>Website Monitor</h1>
+    <div class='column'>
+        <h2>UP</h2>
+
+        {% for site in sites_up %}
+            <a class='link up' href='{{ site.uri }}'>{{ site.uri_friendly }}</a>
+        {% endfor %}
+    </div>
+
+    <div class='column'>
+        <h2>DOWN</h2>
+
+        {% for site in sites_down %}
+            <a class='link down' href='{{ site.uri }}'>{{ site.uri_friendly }}</a>
+        {% endfor %}
+    </div>
+
+    <div class='clear'></div>
+{% endblock content %}

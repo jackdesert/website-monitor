@@ -19,6 +19,21 @@ class TestWebsite(unittest.TestCase):
         self.assertEqual(uri, site.uri)
         self.assertEqual(expected_text, site.expected_text)
 
+    def test_domain(self):
+        uris = {'http://ex.com': 'ex',
+                'https://by.the.com': 'the'}
+        for uri, domain in uris.items():
+            site = Website(uri, '')
+            self.assertEqual(site._domain, domain)
+
+    def test_subdomain(self):
+        uris = {'http://my.ex.com': 'my',
+                'https://by.the.com': 'by',
+                'https://where.com': ''}
+        for uri, subdomain in uris.items():
+            site = Website(uri, '')
+            self.assertEqual(site._subdomain, subdomain)
+
     def test_observation_file(self):
         site = Website('https://example.com', 'example')
         self.assertEqual(site.observation_file, 'observations/https:||example.com')
