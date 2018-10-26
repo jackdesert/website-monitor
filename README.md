@@ -61,8 +61,8 @@ response.
 Running from Command Line
 -------------------------
 
-    cd website-monitor/lib
-    python website_monitor.py
+    cd website-monitor
+    env/bin/python monitor/models/website_monitor.py
 
 
 Running as a Daemon
@@ -80,8 +80,8 @@ to run as a daemon. A systemd unit file is provided.
 Running Tests
 -------------
 
-    cd website-monitor/lib
-    python3 -m unittest discover -s ../test
+    cd website-monitor
+    env/bin/pytest
 
 
 Backlog
@@ -107,7 +107,7 @@ Getting Started
 
 - Change directory into your newly created project.
 
-    cd monitor
+    cd website-monitor
 
 - Create a Python virtual environment.
 
