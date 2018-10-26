@@ -1,5 +1,5 @@
-from social_worker import SocialWorker
-from courier import Courier
+from monitor.models.social_worker import SocialWorker
+from monitor.models.courier import Courier
 
 import unittest
 from unittest.mock import patch
@@ -31,7 +31,7 @@ class TestSocialWorker(unittest.TestCase):
         site_1 = soc.sites[1]
         self.assertEqual(site_1.expected_text, '')
 
-    @patch('courier.Courier')
+    @patch('monitor.models.courier.Courier')
     def test_check_sites(self, MockCourier):
         data = {'webhook_url': Courier.SLACK_TEST_URI,
                 'sites': ['https://example.com   example']
@@ -46,7 +46,7 @@ class TestSocialWorker(unittest.TestCase):
         print('Calling network from test_social_worker.py')
         soc.check_sites()
 
-    @patch('courier.Courier')
+    @patch('monitor.models.courier.Courier')
     def test_check_sites_async(self, MockCourier):
         data = {'webhook_url': Courier.SLACK_TEST_URI,
                 'sites': ['https://example.com   example']

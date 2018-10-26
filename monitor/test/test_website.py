@@ -1,10 +1,10 @@
-from website import Website
-from website import Fetcher
+from monitor.models.website import Website
+from monitor.models.website import Fetcher
 
-import pdb
 import unittest
 from unittest.mock import patch
 from collections import namedtuple
+import pdb
 
 class TestWebsite(unittest.TestCase):
 
@@ -21,7 +21,7 @@ class TestWebsite(unittest.TestCase):
 
     def test_observation_file(self):
         site = Website('https://example.com', 'example')
-        self.assertEqual(site.observation_file, '../observations/https:||example.com')
+        self.assertEqual(site.observation_file, 'observations/https:||example.com')
 
     def test_last_observation_happy_path(self):
         site = Website('https://example.com', 'example')
@@ -47,7 +47,7 @@ class TestWebsite(unittest.TestCase):
         status = site.current_status()
         self.assertEqual(status, 'down')
 
-    @patch('website.Fetcher')
+    @patch('monitor.models.website.Fetcher')
     def test_message_status_same_as_last_time(self, MockFetcher):
         site = Website('https://example.com', 'example')
         site.new_observation('up')
@@ -59,7 +59,7 @@ class TestWebsite(unittest.TestCase):
         site.evaluate()
         self.assertFalse(site.message, 'No Message expected')
 
-    @patch('website.Fetcher')
+    @patch('monitor.models.website.Fetcher')
     def test_message_status_was_up_now_down(self, MockFetcher):
         site = Website('https://example.com', 'this phrase not found')
 
@@ -70,7 +70,7 @@ class TestWebsite(unittest.TestCase):
         site.evaluate()
         self.assertEqual(site.message, 'https://example.com is down.')
 
-    @patch('website.Fetcher')
+    @patch('monitor.models.website.Fetcher')
     def test_message_status_was_down_now_up(self, MockFetcher):
         site = Website('https://example.com', 'example')
 
@@ -83,7 +83,7 @@ class TestWebsite(unittest.TestCase):
                       'https://example.com is up. Last down duration: 1 seconds.']
         self.assertTrue(site.message in variations, 'Expected duration is either 0 or 1 second')
 
-    @patch('website.Fetcher')
+    @patch('monitor.models.website.Fetcher')
     def test_message_when_no_observation_exists(self, MockFetcher):
         site = Website('https://example.com', 'example')
 

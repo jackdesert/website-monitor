@@ -1,6 +1,6 @@
-from courier import Courier
-
+from monitor.models.courier import Courier
 import unittest
+import pdb
 
 class TestSocialWorker(unittest.TestCase):
 

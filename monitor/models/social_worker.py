@@ -1,14 +1,15 @@
-import yaml
+from collections import namedtuple
+from concurrent import futures
 import pdb
 import re
-from collections import namedtuple
-from website import Website
-from courier import Courier
-from concurrent import futures
+import yaml
+
+from monitor.models.website import Website
+from monitor.models.courier import Courier
 
 
 class SocialWorker:
-    CONFIG_FILE = '../config/sites.yml'
+    CONFIG_FILE = 'config/sites.yml'
     WHITESPACE_REGEX = re.compile('\s+')
     PIPE = '|'
 

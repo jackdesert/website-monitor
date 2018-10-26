@@ -115,7 +115,7 @@ Getting Started
 
 - Upgrade packaging tools.
 
-    env/bin/pip install --upgrade pip setuptools
+    env/bin/pip install --upgrade pip setuptools requests pyaml mock lxml
 
 - Install the project in editable mode with its testing requirements.
 

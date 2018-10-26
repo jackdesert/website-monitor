@@ -22,7 +22,7 @@ class Fetcher:
 class Website:
 
     TIMESTAMP_FORMAT = '%Y-%m-%d %H:%M:%S'
-    OBSERVATIONS = '../observations'
+    OBSERVATIONS = 'observations'
     FORWARD_SLASH_REGEX = re.compile('\/')
     DOWN = 'down'
     UP = 'up'

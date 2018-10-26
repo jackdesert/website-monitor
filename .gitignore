@@ -2,6 +2,8 @@
 *.pyc
 
 /config/sites.yml
+/monitor.egg-info
 /observations
+/env
 
 .python-version
